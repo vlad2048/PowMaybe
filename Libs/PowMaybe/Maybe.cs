@@ -34,7 +34,7 @@ public abstract class Maybe<T> : IEquatable<Maybe<T>>
 		this switch
 		{
 			Some { V: var val } => May.Some(fun(val)),
-			None /*{ Error: var err }*/ => May.None<V>(/*err*/),
+			None => May.None<V>(),
 			_ => throw new ArgumentException()
 		};
 
@@ -54,10 +54,10 @@ public abstract class Maybe<T> : IEquatable<Maybe<T>>
 			Some { V: var val } => mapper(val) switch
 			{
 				Maybe<U>.Some { V: var valFun } => May.Some(getResult(val, valFun)),
-				Maybe<U>.None /*{ Error: var errFun }*/ => May.None<V>(/*errFun*/),
+				Maybe<U>.None => May.None<V>(),
 				_ => throw new ArgumentException()
 			},
-			None /*{ Error: var err }*/ => May.None<V>(/*err*/),
+			None => May.None<V>(),
 			_ => throw new ArgumentException()
 		};
 	
