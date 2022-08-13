@@ -77,8 +77,10 @@ Maybe<Person> QueryAndParse(string url) =>
     from person in ParsePerson(html)
     where person.Name != "John" // you can also use where statements
     select parson;
+```
 
-// Unwrapping
+### Unwrapping
+```c#
 Maybe<Person> mayPerson = ...
 
 if (mayPerson.IsSome(out var person))
