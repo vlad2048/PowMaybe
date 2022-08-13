@@ -54,12 +54,16 @@ The result is:
 It will not apply for all the code everywhere, but when it does apply it will drastically reduce the potential for bugs.
 
 
-## Basics
+## Usage
 
 ### Creation
 ```c#
 var a = May.Some(47);
 var b = May.None<string>();
+// nullable reference -> Maybe<>
+var mayPerson = person.ToMaybe();
+// Maybe<> -> nullable reference
+var person = mayPerson.ToNullable();
 ```
 
 ### Combining
