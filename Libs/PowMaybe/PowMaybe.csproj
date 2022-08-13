@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <Description>Maybe monad</Description>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageTags>Functional programming,Maybe,Optional</PackageTags>
+    <PackageProjectUrl>https://github.com/vlad2048/WowMaybe</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>
