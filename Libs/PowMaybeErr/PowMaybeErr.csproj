@@ -1,16 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-
-    <Description>Maybe monad</Description>
-    <PackageReadmeFile>Readme.md</PackageReadmeFile>
-    <PackageTags>Functional programming,Maybe,Optional</PackageTags>
-    <PackageProjectUrl>https://github.com/vlad2048/PowMaybe</PackageProjectUrl>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\..\Readme.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
 </Project>

@@ -1,15 +1,22 @@
 <Project>
-  <PropertyGroup>
-    <LangVersion>preview</LangVersion>
-    <EnablePreviewFeatures>True</EnablePreviewFeatures>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DebugType>embedded</DebugType>
-    
-    <Version>0.0.3</Version>
-    
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Authors>vlad2048</Authors>
-    
-  </PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DebugType>embedded</DebugType>
+		<Version>0.0.4</Version>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Authors>vlad2048</Authors>
+		<Description>Maybe monad</Description>
+		<PackageTags>Functional programming,Maybe,Optional</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/vlad2048/PowMaybe</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(SolutionDir)\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
 </Project>
