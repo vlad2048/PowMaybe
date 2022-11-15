@@ -16,10 +16,21 @@ public static class May
 		not null => Some(v)
 	};
 
-	public static T? ToNullable<T>(this Maybe<T> v) where T : class => v.IsSome(out var val) switch
+	/// <summary>
+	/// Converts a Maybe&lt;T&gt; to:
+	/// <list type="bullet">
+	/// <item><term>A nullable reference</term><description>if T is a reference type</description></item>
+	/// <item><term>A nullable value</term><description>if T is a nullable value type</description></item>
+	/// <item><term>default(T)</term><description>if T is a non nullable value type</description></item>
+	/// </list>
+	/// </summary>
+	/// <typeparam name="T">Type</typeparam>
+	/// <param name="v">Value to convert</param>
+	/// <returns>Conversion to nullable</returns>
+	public static T? ToNullable<T>(this Maybe<T> v) => v.IsSome(out var val) switch
 	{
 		true => val,
-		false => null
+		false => default
 	};
 
 
@@ -71,27 +82,4 @@ public static class May
 	};
 
 	public static T FailWith<T>(this Maybe<T> may, T def) => may.IsSome(out var val) ? val : def;
-
-
-	// ****************
-	// * Enumerations *
-	// ****************
-	public static IEnumerable<T> WhereSome<T>(this IEnumerable<Maybe<T>> source) =>
-		source.Where(e => e.IsSome()).Select(e => e.Ensure());
-
-	public static Maybe<T> FirstOrMaybe<T>(this IEnumerable<T> source, Func<T, bool>? predicate = null)
-	{
-		foreach (var elt in source)
-			if (predicate == null || predicate(elt))
-				return Some(elt);
-		return None<T>();
-	}
-
-	public static Maybe<T> LastOrMaybe<T>(this IEnumerable<T> source, Func<T, bool>? predicate = null)
-	{
-		foreach (var elt in source.Reverse())
-			if (predicate == null || predicate(elt))
-				return Some(elt);
-		return None<T>();
-	}
 }
