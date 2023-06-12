@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace PowMaybe.Serializers;
 
-public class MaybeSerializer<T> : JsonConverter<Maybe<T>>
+public sealed class MaybeSerializer<T> : JsonConverter<Maybe<T>>
 {
-	private class Nfo
+	private sealed class Nfo
 	{
 		public bool HasVal { get; }
 		public T? V { get; }

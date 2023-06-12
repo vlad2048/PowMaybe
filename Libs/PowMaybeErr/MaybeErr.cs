@@ -57,14 +57,14 @@ public abstract class MaybeErr<T>
 }
 
 
-public class Some<T> : MaybeErr<T>
+public sealed class Some<T> : MaybeErr<T>
 {
 	public readonly T Value;
 	internal Some(T value) => Value = value;
 	public override string ToString() => $@"Some<{typeof(T).Name}>({Value})";
 }
 
-public class None<T> : MaybeErr<T>
+public sealed class None<T> : MaybeErr<T>
 {
 	public readonly string Error;
 	internal None(string error) => Error = error;
