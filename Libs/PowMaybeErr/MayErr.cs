@@ -4,20 +4,26 @@ namespace PowMaybeErr;
 
 public static class MayErr
 {
+	// ************
+	// * Creation *
+	// ************
 	public static MaybeErr<T> Some<T>(T val) => new Some<T>(val);
 	public static MaybeErr<T> None<T>(string msg) => new None<T>(msg);
 
-	
 	public static MaybeErr<T> ToMaybeErr<T>(this T? v, string err) where T : class => v switch
 	{
 		null => None<T>(err),
 		not null => Some(v)
 	};
 
-	public static T Ensure<T>(this MaybeErr<T> may) => may.IsSome(out var val) switch
+
+	// **************
+	// * Unwrapping *
+	// **************
+	public static T Ensure<T>(this MaybeErr<T> may) => may.IsSome(out var val, out var err) switch
 	{
 		true => val!,
-		false => throw new ArgumentException()
+		false => throw new ArgumentException(err)
 	};
 
 	public static string EnsureNone<T>(this MaybeErr<T> may) => may.IsSome(out _, out var err) switch
@@ -119,4 +125,30 @@ public static class MayErr
 				return Some(elt);
 		return None<T>(err);
 	}
+
+	public static T[] ToArray<T>(this MaybeErr<T> may) => may.IsSome(out var val) switch
+	{
+		true => new[] { val },
+		false => Array.Empty<T>()
+	};
+
+
+	// ******************
+	// * Transformation *
+	// ******************
+	public static MaybeErr<T> SelectErr<T>(this MaybeErr<T> may, Func<string, string> errFun) => may.IsSome(out _, out var err) switch
+	{
+		true => may,
+		false => None<T>(errFun(err))
+	};
+
+
+	// ***********
+	// * Testing *
+	// ***********
+	public static bool IsSomeAndEqualTo<T>(this MaybeErr<T> may, T elt) => may.IsSome(out var val) switch
+	{
+		true => val.Equals(elt),
+		false => false
+	};
 }

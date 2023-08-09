@@ -16,23 +16,6 @@ public static class May
 		not null => Some(v)
 	};
 
-	/// <summary>
-	/// Converts a Maybe&lt;T&gt; to:
-	/// <list type="bullet">
-	/// <item><term>A nullable reference</term><description>if T is a reference type</description></item>
-	/// <item><term>A nullable value</term><description>if T is a nullable value type</description></item>
-	/// <item><term>default(T)</term><description>if T is a non nullable value type</description></item>
-	/// </list>
-	/// </summary>
-	/// <typeparam name="T">Type</typeparam>
-	/// <param name="v">Value to convert</param>
-	/// <returns>Conversion to nullable</returns>
-	public static T? ToNullable<T>(this Maybe<T> v) => v.IsSome(out var val) switch
-	{
-		true => val,
-		false => default
-	};
-
 
 	// **************
 	// * Unwrapping *
@@ -82,4 +65,37 @@ public static class May
 	};
 
 	public static T FailWith<T>(this Maybe<T> may, T def) => may.IsSome(out var val) ? val : def;
+
+	public static T[] ToArray<T>(this Maybe<T> may) => may.IsSome(out var val) switch
+	{
+		true => new[] { val },
+		false => Array.Empty<T>()
+	};
+
+	/// <summary>
+	/// Converts a Maybe&lt;T&gt; to:
+	/// <list type="bullet">
+	/// <item><term>A nullable reference</term><description>if T is a reference type</description></item>
+	/// <item><term>A nullable value</term><description>if T is a nullable value type</description></item>
+	/// <item><term>default(T)</term><description>if T is a non nullable value type</description></item>
+	/// </list>
+	/// </summary>
+	/// <typeparam name="T">Type</typeparam>
+	/// <param name="v">Value to convert</param>
+	/// <returns>Conversion to nullable</returns>
+	public static T? ToNullable<T>(this Maybe<T> v) => v.IsSome(out var val) switch
+	{
+		true => val,
+		false => default
+	};
+
+
+	// ***********
+	// * Testing *
+	// ***********
+	public static bool IsSomeAndEqualTo<T>(this Maybe<T> may, T elt) => may.IsSome(out var val) switch
+	{
+		true => val.Equals(elt),
+		false => false
+	};
 }
