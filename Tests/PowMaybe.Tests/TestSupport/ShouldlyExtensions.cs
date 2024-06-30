@@ -12,5 +12,5 @@ static class ShouldlyExtensions
 		mayVal.IsNone().ShouldBeTrue();
 
 	public static void ShouldBeArray<T>(this IEnumerable<T> actArr, params T[] expArr) =>
-		CollectionAssert.AreEqual(expArr, actArr);
+		Assert.That(actArr, Is.EqualTo(expArr));
 }

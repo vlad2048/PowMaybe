@@ -1,22 +1,24 @@
 <Project>
 
 	<PropertyGroup>
+		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<EnablePreviewFeatures>True</EnablePreviewFeatures>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<DebugType>embedded</DebugType>
-		<Version>0.0.12</Version>
+		<Version>0.1.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Authors>vlad2048</Authors>
 		<Description>Maybe monad</Description>
 		<PackageTags>Functional programming,Maybe,Optional</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/vlad2048/PowMaybe</PackageProjectUrl>
+		<SolutionDirectory>$(MSBuildThisFileDirectory.TrimEnd('\\'))</SolutionDirectory>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="$(SolutionDir)\README.md" Pack="true" PackagePath="\" />
+		<None Include="$(SolutionDirectory)\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<PropertyGroup>
